@@ -93,7 +93,7 @@
 - [GitHub Pages](https://miltonhenschel.github.io/math-magicians-app/)
 -->
 
-- [Render](https://bookstore-app.onrender.com/)
+- [Render](https://bookstore-app-hw1t.onrender.com)
 
 <!--  
 - [Video presentation](https://www.loom.com/share/)
