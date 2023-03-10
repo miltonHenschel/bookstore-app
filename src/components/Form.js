@@ -7,16 +7,17 @@ function Form() {
         <span className={styles.Title}>ADD NEW BOOK</span>
         <form className={styles.Form}>
           <input
-            className={styles.LessonPanelInput}
+            className={styles.LessonPanel}
             type="text"
             name="bookTitle"
             placeholder="Book title"
           />
-          <select className={styles.LessonPanelSelect} name="Category">
-            <option className={styles.Title} value="" selected>
-              Category
-            </option>
-          </select>
+          <input
+            className={styles.LessonPanel}
+            type="text"
+            name="bookAuthor"
+            placeholder="Book author"
+          />
           <button type="submit" className={styles.Rectangle2}>
             ADD BOOK
           </button>

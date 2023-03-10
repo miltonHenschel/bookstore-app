@@ -1,5 +1,8 @@
-h2 {
-  margin: 4rem;
+.button {
+  border-radius: 3px;
+  background-color: var(--azure);
+  padding: 1rem;
+  margin-left: 4rem;
 }
 
 a {

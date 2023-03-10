@@ -3,7 +3,9 @@ import styles from '../styles/Categories.module.css';
 function Categories() {
   return (
     <>
-      <h2 className={styles.h2}>Categories page</h2>
+      <button type="button" className={styles.button}>
+        Check status
+      </button>
     </>
   );
 }

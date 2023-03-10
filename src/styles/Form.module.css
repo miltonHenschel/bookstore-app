@@ -31,18 +31,10 @@
   background-color: var(--azure);
 }
 
-.LessonPanelInput,
-.LessonPanelSelect {
+.LessonPanel {
   padding: 1rem;
   border-radius: 4px;
   border: solid 1px var(--white);
   background-color: var(--white-two);
-}
-
-.LessonPanelInput {
-  width: 50%;
-}
-
-.LessonPanelSelect {
-  width: 30%;
+  width: 39%;
 }
