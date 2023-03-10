@@ -12,14 +12,14 @@ function Books() {
           title="The Hunger Games"
           author="Suzanne Collins"
           className="c100 p64 center"
-          percentage="64"
+          percentage={64}
           chapter="Chapter 17"
         />
         <Book
           schoolOf="Science Fiction"
           title="Dune"
           author="Frank Herbert"
-          percentage="8"
+          percentage={8}
           className="c100 p8 center"
           chapter='Chapter 3: "A Lesson Learned"'
         />

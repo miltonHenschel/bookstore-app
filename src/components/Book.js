@@ -62,6 +62,6 @@ Book.propTypes = {
   chapter: PropTypes.string.isRequired,
 };
 
-Book.defaultProps = { percentage: '0' };
+Book.defaultProps = { percentage: 0 };
 
 export default Book;
