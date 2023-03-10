@@ -1,0 +1,62 @@
+.panelContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+.panel {
+  margin: 0;
+  padding: 0 4rem;
+  background-color: var(--white-two);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.BookstoreCMS {
+  width: 15rem;
+  margin-right: 5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.875rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--azure);
+}
+
+.BOOKS {
+  width: 3.688rem;
+  height: 1rem;
+  margin: 0 2rem 0 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.813rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 1.9px;
+  color: var(--black-two);
+}
+
+.CATEGORIES {
+  width: 6.563rem;
+  height: 1rem;
+  margin: 1.125rem 3.5rem 0.688rem 2.563rem;
+  opacity: 0.5;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.813rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 1.9px;
+  color: var(--black-two);
+}
+
+.login {
+  font-size: 100px;
+  cursor: pointer;
+}
