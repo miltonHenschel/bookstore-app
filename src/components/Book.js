@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 
 import styles from '../styles/Book.module.css';
 
-function Book({
-  schoolOf, title, author, className, percentage, chapter,
-}) {
+function Book({ schoolOf, title, author, className, percentage, chapter }) {
   return (
     <>
       <div className={styles.LessonPanel}>
@@ -34,10 +32,7 @@ function Book({
               </div>
             </div>
             <div className="Div2Div1Div1">
-              <span className={styles.PercentComplete}>
-                {percentage}
-                %
-              </span>
+              <span className={styles.PercentComplete}>{percentage}%</span>
               <span className={styles.Completed}>Completed</span>
             </div>
           </div>
