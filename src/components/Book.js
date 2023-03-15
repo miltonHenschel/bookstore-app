@@ -17,7 +17,7 @@ function Book({
             <span className={styles.Author}>{author}</span>
           </section>
           <section className="Div1Sec2">
-            <span className={styles.Comments}>Comments</span>
+            <span className={styles.Comments}>Add</span>
             <div className={styles.Line2} />
             <span className={styles.Remove}>Remove</span>
             <div className={styles.Line2} />
