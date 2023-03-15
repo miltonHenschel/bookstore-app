@@ -23,7 +23,7 @@ function Book({
             <span className={styles.Author}>{author}</span>
           </section>
           <section className="Div1Sec2">
-            <span className={styles.Comments}>Add</span>
+            <span className={styles.Comments}>Comment</span>
             <div className={styles.Line2} />
             <span className={styles.Remove}>
               <button
@@ -69,14 +69,19 @@ function Book({
 }
 
 Book.propTypes = {
-  category: PropTypes.string.isRequired,
+  category: PropTypes.string,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   percentage: PropTypes.number,
-  className: PropTypes.string.isRequired,
-  chapter: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  chapter: PropTypes.string,
 };
 
-Book.defaultProps = { percentage: 0 };
+Book.defaultProps = {
+  category: '',
+  percentage: 0,
+  className: 'c100 p0 center',
+  chapter: '',
+};
 
 export default Book;
