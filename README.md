@@ -218,7 +218,9 @@ I would like to thank **![](https://img.shields.io/badge/Microverse-blueviolet).
 
 <!-- FAQ (optional) -->
 
+<!--
 ## ❓ FAQ <a name="faq"></a>
+-->
 
 <!--
 - **[Question_1]**
@@ -230,7 +232,9 @@ I would like to thank **![](https://img.shields.io/badge/Microverse-blueviolet).
   - [Answer_2]
 -->
 
+<!--
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+-->
 
 <!-- LICENSE -->
 
