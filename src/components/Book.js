@@ -1,25 +1,40 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
+import { removeBooks } from '../redux/features/books/booksSlice';
 import styles from '../styles/Book.module.css';
 
 function Book({
-  schoolOf, title, author, className, percentage, chapter,
+  category, title, author, className, percentage, chapter,
 }) {
+  const dispatch = useDispatch();
+  const id = uuidv4();
+
   return (
     <>
       <div className={styles.LessonPanel}>
         <div className="Div1">
           <section className="Div1Sec1">
-            <span className={styles.SchoolOf}>{schoolOf}</span>
+            <span className={styles.SchoolOf}>{category}</span>
             <span className={styles.Title}>{title}</span>
             <span className={styles.Author}>{author}</span>
           </section>
           <section className="Div1Sec2">
             <span className={styles.Comments}>Add</span>
             <div className={styles.Line2} />
-            <span className={styles.Remove}>Remove</span>
+            <span className={styles.Remove}>
+              <button
+                type="button"
+                onClick={() => {
+                  dispatch(removeBooks(id));
+                }}
+              >
+                Remove
+              </button>
+            </span>
             <div className={styles.Line2} />
             <span className={styles.Edit}>Edit</span>
           </section>
@@ -54,7 +69,7 @@ function Book({
 }
 
 Book.propTypes = {
-  schoolOf: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   percentage: PropTypes.number,
