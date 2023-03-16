@@ -1,28 +1,24 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
 import { addBooks } from '../redux/features/books/booksSlice';
 import styles from '../styles/Form.module.css';
 
 function Form() {
-  const dispatch = useDispatch();
-
   const [input, setInput] = useState({
-    bookTitle: '',
-    bookAuthor: '',
+    title: '',
+    author: '',
   });
 
+  const dispatch = useDispatch();
+
   const handleChange = (e) => {
-    setInput((prevInput) => ({
-      ...prevInput,
+    setInput({
+      ...input,
       [e.target.name]: e.target.value,
-    }));
-    // setInput({
-    //   ...input,
-    //   [e.target.name]: e.target.value,
-    // });
+    });
   };
 
   const handleSubmit = (e) => {
@@ -30,7 +26,7 @@ function Form() {
     const id = uuidv4();
     const newBook = { item_id: id, ...input };
     dispatch(addBooks(newBook));
-    setInput({ bookTitle: '', bookAuthor: '' });
+    setInput({ title: '', author: '' });
   };
 
   return (
@@ -41,8 +37,8 @@ function Form() {
           <input
             className={styles.LessonPanel}
             type="text"
-            name="bookTitle"
-            value={input.bookTitle}
+            name="title"
+            value={input.title}
             onChange={handleChange}
             placeholder="Book title"
             required
@@ -50,8 +46,8 @@ function Form() {
           <input
             className={styles.LessonPanel}
             type="text"
-            name="bookAuthor"
-            value={input.bookAuthor}
+            name="author"
+            value={input.author}
             onChange={handleChange}
             placeholder="Book author"
             required
