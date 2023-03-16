@@ -24,6 +24,8 @@ const initialState = {
   ],
 };
 
+const baseURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/xOI7HhKVUsDCTkv7qbXd/books';
+
 const booksSlice = createSlice({
   name: 'books',
   initialState,
@@ -33,7 +35,6 @@ const booksSlice = createSlice({
     },
     removeBooks: (state, action) => {
       const booksId = action.payload;
-      // console.log(state.booksItem, booksId);
       state.booksItem = state.booksItem.filter(
         (book) => book.itemId !== booksId,
       );
@@ -41,6 +42,7 @@ const booksSlice = createSlice({
   },
 });
 
+// export const getBooks = (state) => state.books;
 export const { addBooks, removeBooks } = booksSlice.actions;
 
 export default booksSlice.reducer;
