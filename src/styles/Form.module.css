@@ -25,13 +25,6 @@
   margin-left: 4rem;
 }
 
-.Rectangle2 {
-  width: 10%;
-  border-radius: 3px;
-  background-color: var(--azure);
-  cursor: pointer;
-}
-
 .LessonPanel {
   padding: 1rem;
   border-radius: 4px;

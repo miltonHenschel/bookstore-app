@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
 import { addBooks } from '../redux/features/books/booksSlice';
+import AddBook from './AddBook';
 import styles from '../styles/Form.module.css';
 
 function Form() {
@@ -52,9 +53,7 @@ function Form() {
             placeholder="Book author"
             required
           />
-          <button type="submit" className={styles.Rectangle2}>
-            ADD BOOK
-          </button>
+          <AddBook />
         </form>
       </div>
     </>
