@@ -9,3 +9,9 @@
 a {
   text-decoration: none;
 }
+
+.h2 {
+  padding: 1rem 0;
+  margin-left: 4rem;
+  color: var(--red);
+}
