@@ -1,18 +1,11 @@
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 
-import { removeBooks } from '../redux/features/books/booksSlice';
 import styles from '../styles/Book.module.css';
+import RemoveBook from './RemoveBook';
 
 function Book({
   id, category, title, author, className, percentage, chapter,
 }) {
-  const dispatch = useDispatch();
-
-  const handleRemoveBooks = () => {
-    dispatch(removeBooks(id));
-  };
-
   return (
     <>
       <div className={styles.LessonPanel}>
@@ -26,9 +19,7 @@ function Book({
             <span className={styles.Comments}>Comment</span>
             <div className={styles.Line2} />
             <span className={styles.Remove}>
-              <button type="button" onClick={handleRemoveBooks}>
-                Remove
-              </button>
+              <RemoveBook id={id} />
             </span>
             <div className={styles.Line2} />
             <span className={styles.Edit}>Edit</span>
