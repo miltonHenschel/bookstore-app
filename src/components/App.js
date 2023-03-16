@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { Routes, Route } from 'react-router-dom';
 
 import Categories from '../routes/Categories';

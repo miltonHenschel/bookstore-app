@@ -1,17 +1,17 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
 
 import { removeBooks } from '../redux/features/books/booksSlice';
 import styles from '../styles/Book.module.css';
 
 function Book({
-  category, title, author, className, percentage, chapter,
+  id, category, title, author, className, percentage, chapter,
 }) {
   const dispatch = useDispatch();
-  const id = uuidv4();
+
+  const handleRemoveBooks = () => {
+    dispatch(removeBooks(id));
+  };
 
   return (
     <>
@@ -26,12 +26,7 @@ function Book({
             <span className={styles.Comments}>Comment</span>
             <div className={styles.Line2} />
             <span className={styles.Remove}>
-              <button
-                type="button"
-                onClick={() => {
-                  dispatch(removeBooks(id));
-                }}
-              >
+              <button type="button" onClick={handleRemoveBooks}>
                 Remove
               </button>
             </span>
@@ -69,6 +64,7 @@ function Book({
 }
 
 Book.propTypes = {
+  id: PropTypes.string.isRequired,
   category: PropTypes.string,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
@@ -78,10 +74,10 @@ Book.propTypes = {
 };
 
 Book.defaultProps = {
-  category: '',
+  category: 'Category: N/A',
   percentage: 0,
   className: 'c100 p0 center',
-  chapter: '',
+  chapter: 'Chapter: N/A',
 };
 
 export default Book;

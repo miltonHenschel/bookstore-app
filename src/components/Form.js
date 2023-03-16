@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
@@ -24,8 +23,8 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const id = uuidv4();
-    const newBook = { item_id: id, ...input };
+    const itemId = uuidv4();
+    const newBook = { itemId, ...input };
     dispatch(addBooks(newBook));
     setInput({ title: '', author: '' });
   };

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { useSelector } from 'react-redux';
 import Book from '../components/Book';
 import Form from '../components/Form';
@@ -23,9 +22,10 @@ function Books() {
   return (
     <>
       <div className={styles.BookContainer}>
-        {books.map((book) => (
+        {books.booksItem.map((book) => (
           <Book
-            key={book.id}
+            key={book.itemId}
+            id={book.itemId}
             category={book.category}
             title={book.title}
             author={book.author}
