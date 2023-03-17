@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
   booksItem: [
@@ -24,7 +25,8 @@ const initialState = {
   ],
 };
 
-const baseURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/xOI7HhKVUsDCTkv7qbXd/books';
+const initialURL =
+  'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/xOI7HhKVUsDCTkv7qbXd/books';
 
 const booksSlice = createSlice({
   name: 'books',
@@ -36,7 +38,7 @@ const booksSlice = createSlice({
     removeBooks: (state, action) => {
       const booksId = action.payload;
       state.booksItem = state.booksItem.filter(
-        (book) => book.itemId !== booksId,
+        (book) => book.itemId !== booksId
       );
     },
   },
