@@ -8,7 +8,8 @@ import Form from '../components/Form';
 import styles from '../styles/Books.module.css';
 
 function Books() {
-  const books = useSelector((state) => state.books);
+  const { booksItem } = useSelector((state) => state.books);
+  const isLoading = useSelector((state) => state.books.isLoading);
 
   const dispatch = useDispatch();
 
@@ -16,22 +17,16 @@ function Books() {
     dispatch(fetchBooksFromAPI());
   }, [dispatch]);
 
-  if (books.length === 0) {
-    return (
-      <>
-        <div className={styles.BookContainer}>
-          <h2 className={styles.h2}>Empty library...</h2>
-        </div>
-        <div className={styles.Line} />
-        <Form />
-      </>
-    );
-  }
-
   return (
     <>
+      {booksItem.length === 0 && (
+        <div className={styles.BookContainer}>
+          {isLoading && <h2 className={styles.h2}>Loading...</h2>}
+          {!isLoading && <h2 className={styles.h2}>Empty library...</h2>}
+        </div>
+      )}
       <div className={styles.BookContainer}>
-        {books.booksItem.map((book) => (
+        {booksItem.map((book) => (
           <Book
             key={book.itemId}
             id={book.itemId}
