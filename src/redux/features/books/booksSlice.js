@@ -23,10 +23,23 @@ const initialState = {
       author: 'Richard Dawkins',
     },
   ],
+  isLoading: false,
 };
 
 const initialURL =
   'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/xOI7HhKVUsDCTkv7qbXd/books';
+
+const fetchBooksFromAPI = createAsyncThunk(
+  'books/getBooksFromAPI',
+  async (thunkAPI) => {
+    try {
+      const response = await axios.get(initialURL);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Something went wrong.');
+    }
+  }
+);
 
 const booksSlice = createSlice({
   name: 'books',
@@ -40,6 +53,18 @@ const booksSlice = createSlice({
       state.booksItem = state.booksItem.filter(
         (book) => book.itemId !== booksId
       );
+    },
+  },
+  extraReducers: {
+    [fetchBooksFromAPI.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [fetchBooksFromAPI.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.booksItem = action.payload;
+    },
+    [fetchBooksFromAPI.rejected]: (state) => {
+      state.isLoading = false;
     },
   },
 });
