@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
@@ -26,9 +27,19 @@ const initialState = {
   isLoading: false,
 };
 
-const initialURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/xOI7HhKVUsDCTkv7qbXd/books';
+const initialURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/jlHjbkMlzkGLXOjWQa2c/books';
 
-const fetchBooksFromAPI = createAsyncThunk(
+const getBooksArr = (jsonbooks) => {
+  const id = Object.keys(jsonbooks);
+  const booksArr = Object.values(jsonbooks).flat();
+  const books = booksArr.map((book, index) => ({
+    ...book,
+    item_id: id[index],
+  }));
+  return books;
+};
+
+export const fetchBooksFromAPI = createAsyncThunk(
   'books/getBooksFromAPI',
   async (thunkAPI) => {
     try {
@@ -60,7 +71,8 @@ const booksSlice = createSlice({
     },
     [fetchBooksFromAPI.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.booksItem = action.payload;
+      // console.log(action);
+      state = action.payload;
     },
     [fetchBooksFromAPI.rejected]: (state) => {
       state.isLoading = false;

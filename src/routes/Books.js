@@ -1,4 +1,7 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+
+import { fetchBooksFromAPI } from '../redux/features/books/booksSlice';
 import Book from '../components/Book';
 import Form from '../components/Form';
 
@@ -6,6 +9,12 @@ import styles from '../styles/Books.module.css';
 
 function Books() {
   const books = useSelector((state) => state.books);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchBooksFromAPI());
+  }, [dispatch]);
 
   if (books.length === 0) {
     return (
