@@ -26,8 +26,7 @@ const initialState = {
   isLoading: false,
 };
 
-const initialURL =
-  'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/xOI7HhKVUsDCTkv7qbXd/books';
+const initialURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/xOI7HhKVUsDCTkv7qbXd/books';
 
 const fetchBooksFromAPI = createAsyncThunk(
   'books/getBooksFromAPI',
@@ -38,7 +37,7 @@ const fetchBooksFromAPI = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue('Something went wrong.');
     }
-  }
+  },
 );
 
 const booksSlice = createSlice({
@@ -51,7 +50,7 @@ const booksSlice = createSlice({
     removeBooks: (state, action) => {
       const booksId = action.payload;
       state.booksItem = state.booksItem.filter(
-        (book) => book.itemId !== booksId
+        (book) => book.itemId !== booksId,
       );
     },
   },
