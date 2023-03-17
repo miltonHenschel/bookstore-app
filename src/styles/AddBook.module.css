@@ -1,0 +1,6 @@
+.Rectangle2 {
+  width: 10%;
+  border-radius: 3px;
+  background-color: var(--azure);
+  cursor: pointer;
+}

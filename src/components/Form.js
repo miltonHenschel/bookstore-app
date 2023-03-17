@@ -1,26 +1,58 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
+
+import { addBooks } from '../redux/features/books/booksSlice';
+import AddBook from './AddBook';
 import styles from '../styles/Form.module.css';
 
 function Form() {
+  const [input, setInput] = useState({
+    title: '',
+    author: '',
+  });
+
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const itemId = uuidv4();
+    const newBook = { itemId, ...input };
+    dispatch(addBooks(newBook));
+    setInput({ title: '', author: '' });
+  };
+
   return (
     <>
       <div className={styles.FormContainer}>
         <span className={styles.Title}>ADD NEW BOOK</span>
-        <form className={styles.Form}>
+        <form className={styles.Form} onSubmit={handleSubmit}>
           <input
             className={styles.LessonPanel}
             type="text"
-            name="bookTitle"
+            name="title"
+            value={input.title}
+            onChange={handleChange}
             placeholder="Book title"
+            required
           />
           <input
             className={styles.LessonPanel}
             type="text"
-            name="bookAuthor"
+            name="author"
+            value={input.author}
+            onChange={handleChange}
             placeholder="Book author"
+            required
           />
-          <button type="submit" className={styles.Rectangle2}>
-            ADD BOOK
-          </button>
+          <AddBook />
         </form>
       </div>
     </>

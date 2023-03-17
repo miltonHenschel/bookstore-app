@@ -1,25 +1,26 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
 
 import styles from '../styles/Book.module.css';
+import RemoveBook from './RemoveBook';
 
 function Book({
-  schoolOf, title, author, className, percentage, chapter,
+  id, category, title, author, className, percentage, chapter,
 }) {
   return (
     <>
       <div className={styles.LessonPanel}>
         <div className="Div1">
           <section className="Div1Sec1">
-            <span className={styles.SchoolOf}>{schoolOf}</span>
+            <span className={styles.SchoolOf}>{category}</span>
             <span className={styles.Title}>{title}</span>
             <span className={styles.Author}>{author}</span>
           </section>
           <section className="Div1Sec2">
-            <span className={styles.Comments}>Comments</span>
+            <span className={styles.Comments}>Comment</span>
             <div className={styles.Line2} />
-            <span className={styles.Remove}>Remove</span>
+            <span className={styles.Remove}>
+              <RemoveBook id={id} />
+            </span>
             <div className={styles.Line2} />
             <span className={styles.Edit}>Edit</span>
           </section>
@@ -54,14 +55,20 @@ function Book({
 }
 
 Book.propTypes = {
-  schoolOf: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  category: PropTypes.string,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   percentage: PropTypes.number,
-  className: PropTypes.string.isRequired,
-  chapter: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  chapter: PropTypes.string,
 };
 
-Book.defaultProps = { percentage: 0 };
+Book.defaultProps = {
+  category: 'Category: N/A',
+  percentage: 0,
+  className: 'c100 p0 center',
+  chapter: 'Chapter: N/A',
+};
 
 export default Book;
