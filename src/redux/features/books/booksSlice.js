@@ -20,13 +20,12 @@ export const fetchBooksFromAPI = createAsyncThunk(
 export const addBooksToAPI = createAsyncThunk(
   'book/addBooksToAPI',
   async (object) => {
-    const request = await axios.post(initialURL, JSON.stringify(object), {
+    await axios.post(initialURL, JSON.stringify(object), {
       headers: {
         'Content-type': 'application/json',
       },
     });
-    const response = await request.data;
-    return response;
+    return object;
   },
 );
 
@@ -66,32 +65,11 @@ const booksSlice = createSlice({
       const storeState = state;
       storeState.isLoading = true;
     },
-    [addBooksToAPI.fulfilled]: (state, action) => {
-      // books: [...state.booksItem, action.payload],
-      // isLoading: false,
-      // ...state,
-      const storeState = state;
-      storeState.isLoading = false;
-      const data = action.payload;
-      // const books = Object.entries(data).map(([itemId, item]) => {
-      //   const book = { itemId, ...item[0] };
-      //   return book;
-      // });
-      console.log(data);
-      // return storeState.booksItem;
-      // storeState.booksItem = books;
-      // return {
-      //   ...storeState,
-      //   books: [...storeState.booksItem, action.payload],
-      // };
-      // const newBook = Object.entries(action.payload).map((book) => ({
-      //   itemId: book[0],
-      //   ...book[1][0],
-      //   category: '',
-      // }));
-      // console.log(newBook);
-      // return { ...state, booksItem: newBook };
-    },
+    [addBooksToAPI.fulfilled]: (state, action) => ({
+      ...state,
+      booksItem: [...state.booksItem, action.payload],
+      isLoading: false,
+    }),
     [addBooksToAPI.rejected]: (state) => {
       const storeState = state;
       storeState.isLoading = true;

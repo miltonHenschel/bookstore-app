@@ -28,7 +28,7 @@ function Books() {
       <div className={styles.BookContainer}>
         {books.booksItem.map((book) => (
           <Book
-            key={book.itemId}
+            key={book.id}
             id={book.itemId}
             category={book.category}
             title={book.title}
