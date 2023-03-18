@@ -1,6 +1,9 @@
 .Rectangle2 {
-  width: 10%;
+  width: max-content;
   border-radius: 3px;
+  border: 1px solid var(--white-two);
   background-color: var(--azure);
   cursor: pointer;
+  padding: 1rem;
+  color: var(--white-two);
 }

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { FcBusinessman } from 'react-icons/fc';
+import { BsPerson } from 'react-icons/bs';
 
 import styles from '../styles/Navbar.module.css';
 
@@ -34,7 +34,7 @@ function Navbar() {
             </span>
           </div>
           <div className={styles.login}>
-            <FcBusinessman />
+            <BsPerson />
           </div>
         </div>
       </div>

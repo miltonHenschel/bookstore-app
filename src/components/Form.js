@@ -28,7 +28,10 @@ function Form() {
       item_id: itemId,
       title: input.title,
       author: input.author,
-      category: '',
+      category: 'General',
+      percentage: 25,
+      className: 'c100 p25 center',
+      chapter: 'Chapter 5/20',
     };
 
     dispatch(addBooksToAPI(newBook));
