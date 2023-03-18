@@ -1,7 +1,6 @@
-/* eslint-disable max-len */
-/* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
   booksItem: [
@@ -34,12 +33,31 @@ const initialURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/b
 // jlHjbkMlzkGLXOjWQa2c : mine
 
 export const fetchBooksFromAPI = createAsyncThunk(
-  'books/getBooksFromAPI',
+  'books/fetchBooksFromAPI',
   async () => {
-    const response = await axios.get(initialURL);
-    const data = await response.json();
-    console.log(await data);
-    return data;
+    const request = await axios.get(initialURL);
+    const response = await request.data;
+    return response;
+  },
+);
+
+export const addBooksToAPI = createAsyncThunk(
+  'book/postBooks',
+  async (book) => {
+    const request = await axios(initialURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        itemId: uuidv4(),
+        title: book.title,
+        author: book.author,
+        category: '',
+      }),
+    });
+    const response = await request.json();
+    return response;
   },
 );
 
@@ -59,30 +77,35 @@ const booksSlice = createSlice({
   },
   extraReducers: {
     [fetchBooksFromAPI.pending]: (state) => {
-      state.isLoading = true;
+      const storeState = state;
+      storeState.isLoading = true;
     },
-
     [fetchBooksFromAPI.fulfilled]: (state, action) => {
-      // state.isLoading = false;
-      // const data = action.payload;
-      // const books = Object.entries(data).map(([id, item]) => {
-      //   const singleBook = { id, ...item[0] };
-      //   return singleBook;
-      // });
-      // state.booksItem = books;
-      const newBook = Object.entries(action.payload).map((book) => ({
-        itemId: book[0],
-        ...book,
-      }));
-      return { ...state, booksItem: newBook };
+      const storeState = state;
+      storeState.isLoading = false;
+      const data = action.payload;
+      const books = Object.entries(data).map(([itemId, item]) => {
+        const book = { itemId, ...item[0] };
+        return book;
+      });
+      storeState.booksItem = books;
+    },
+    [fetchBooksFromAPI.rejected]: (state) => {
+      const storeState = state;
+      storeState.isLoading = true;
     },
 
-    // {
-    //   "282":[{"author":"ada","category":"Drama","title":"da"}],"455":[{"author":"dad","category":"Drama","title":"ad"}],"c66d667f-5bdc-42e7-8b5d-51378f6a93a7":[{"author":"J.K. Rowling","title":"Harry Potter  - J.K. Rowling","category":"Fantasy"}],"ec5da28d-6463-427d-b75f-d3d79ee9ef7d":[{"author":"yo","title":"harry poter - yo","category":"Action"}],
-    // }
-
-    [fetchBooksFromAPI.rejected]: (state) => {
-      state.isLoading = false;
+    [addBooksToAPI.pending]: (state) => {
+      const storeState = state;
+      storeState.isLoading = true;
+    },
+    [addBooksToAPI.fulfilled]: (state) => {
+      const storeState = state;
+      storeState.isLoading = false;
+    },
+    [addBooksToAPI.rejected]: (state) => {
+      const storeState = state;
+      storeState.isLoading = true;
     },
   },
 });

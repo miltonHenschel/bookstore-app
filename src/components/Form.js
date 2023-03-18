@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
-import { addBooks } from '../redux/features/books/booksSlice';
+import { addBooksToAPI } from '../redux/features/books/booksSlice';
 import AddBook from './AddBook';
 import styles from '../styles/Form.module.css';
 
@@ -21,11 +21,12 @@ function Form() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const itemId = uuidv4();
     const newBook = { itemId, ...input };
-    dispatch(addBooks(newBook));
+    // dispatch(addBooks(newBook));
+    await dispatch(addBooksToAPI(newBook));
     setInput({ title: '', author: '' });
   };
 
