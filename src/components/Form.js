@@ -21,12 +21,21 @@ function Form() {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const itemId = uuidv4();
-    const newBook = { itemId, ...input };
+    // const category = '';
+    // const newBook = { uuidv4(): {...input} };
+    // const newBook = { itemId, ...input, ...category };
     // dispatch(addBooks(newBook));
-    await dispatch(addBooksToAPI(newBook));
+    const newBook = {
+      item_id: itemId,
+      title: input.title,
+      author: input.author,
+      category: '',
+    };
+    // itemID:{author: input.author, title: input.title}
+    dispatch(addBooksToAPI(newBook));
     setInput({ title: '', author: '' });
   };
 

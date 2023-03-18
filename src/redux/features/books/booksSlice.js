@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
   booksItem: [
@@ -37,26 +36,42 @@ export const fetchBooksFromAPI = createAsyncThunk(
   async () => {
     const request = await axios.get(initialURL);
     const response = await request.data;
+    // console.log(response);
     return response;
   },
 );
 
+// axios({
+//   method: 'post',
+//   url: '/user/12345',
+//   data: {
+//     firstName: 'Fred',
+//     lastName: 'Flintstone'
+//   }
+// });
+
+// export const addBooksToAPI = createAsyncThunk(
+//   'book/addBooksToAPI',
+//   async (data) => {
+//     const request = await axios.post(initialURL, data);
+//     // const response = await request.data;
+//     console.log(request.data);
+//     return request.data;
+//   },
+// );
+
 export const addBooksToAPI = createAsyncThunk(
-  'book/postBooks',
-  async (book) => {
-    const request = await axios(initialURL, {
+  'book/addBooksToAPI',
+  async (object) => {
+    const data = await fetch(initialURL, {
       method: 'POST',
+      body: JSON.stringify(object),
       headers: {
-        'Content-Type': 'application/json',
+        'Content-type': 'application/json',
       },
-      body: JSON.stringify({
-        itemId: uuidv4(),
-        title: book.title,
-        author: book.author,
-        category: '',
-      }),
     });
-    const response = await request.json();
+    const response = await data.text();
+    console.log(response);
     return response;
   },
 );
@@ -99,10 +114,24 @@ const booksSlice = createSlice({
       const storeState = state;
       storeState.isLoading = true;
     },
-    [addBooksToAPI.fulfilled]: (state) => {
-      const storeState = state;
-      storeState.isLoading = false;
-    },
+    [addBooksToAPI.fulfilled]: (state, action) => ({
+      ...state,
+      books: [...state.booksItem, action.payload],
+      isLoading: false,
+      // const storeState = state;
+      // storeState.isLoading = false;
+      // const data = action.payload;
+      // const books = Object.entries(data).map(([itemId, item]) => {
+      //   const book = { itemId, ...item[0] };
+      //   return book;
+      // });
+      // console.log(books);
+      // storeState.booksItem = books;
+      // return {
+      //   ...storeState,
+      //   books: [...storeState.booksItem, action.payload],
+      // };
+    }),
     [addBooksToAPI.rejected]: (state) => {
       const storeState = state;
       storeState.isLoading = true;

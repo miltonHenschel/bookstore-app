@@ -1,13 +1,15 @@
+/* eslint-disable no-unused-vars */
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { removeBooks } from '../redux/features/books/booksSlice';
+// import { removeBooks } from '../redux/features/books/booksSlice';
 
 function RemoveBook({ id }) {
   const dispatch = useDispatch();
 
   const handleRemoveBooks = () => {
-    dispatch(removeBooks(id));
+    // dispatch(removeBooks(id));
+    console.log(dispatch());
   };
 
   return (
