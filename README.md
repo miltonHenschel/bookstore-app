@@ -2,10 +2,8 @@
 
 <div align="center">
 
-<!--
-  <img src="murple_logo.png" alt="logo" width="140"  height="auto" />
+  <img src="https://raw.githubusercontent.com/miltonHenschel/bookstore-app/2ea3543d992dbe8618e6d4c66bb7bbcbc4423ce1/public/booksLogo.png" alt="logo" width="140"  height="auto" />
   <br/>
--->
 
   <h3><b>Bookstore App</b></h3>
 
