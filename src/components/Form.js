@@ -24,9 +24,7 @@ function Form() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const itemId = uuidv4();
-    // const category = '';
-    // const newBook = { uuidv4(): {...input} };
-    // const newBook = { itemId, ...input, ...category };
+    // const newBook = { itemId, ...input };
     // dispatch(addBooks(newBook));
     const newBook = {
       item_id: itemId,
@@ -34,7 +32,7 @@ function Form() {
       author: input.author,
       category: '',
     };
-    // itemID:{author: input.author, title: input.title}
+
     dispatch(addBooksToAPI(newBook));
     setInput({ title: '', author: '' });
   };
