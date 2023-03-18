@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
-import { addBooks } from '../redux/features/books/booksSlice';
+import { addBooksToAPI } from '../redux/features/books/booksSlice';
 import AddBook from './AddBook';
 import styles from '../styles/Form.module.css';
 
@@ -24,8 +24,17 @@ function Form() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const itemId = uuidv4();
-    const newBook = { itemId, ...input };
-    dispatch(addBooks(newBook));
+    const newBook = {
+      item_id: itemId,
+      title: input.title,
+      author: input.author,
+      category: 'General',
+      percentage: 25,
+      className: 'c100 p25 center',
+      chapter: 'Chapter 5/20',
+    };
+
+    dispatch(addBooksToAPI(newBook));
     setInput({ title: '', author: '' });
   };
 

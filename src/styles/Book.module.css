@@ -108,6 +108,7 @@
   line-height: normal;
   letter-spacing: normal;
   color: var(--black-two);
+  text-transform: uppercase;
 }
 
 .Current-Lesson {
@@ -135,7 +136,6 @@
   line-height: normal;
   letter-spacing: 0.5px;
   text-align: center;
-  color: var(--white-two);
 }
 
 .PercentComplete {

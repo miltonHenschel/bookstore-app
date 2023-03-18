@@ -1269,6 +1269,7 @@ section.Div1Sec2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 0.5rem;
 }
 
 .Div2Div1 {

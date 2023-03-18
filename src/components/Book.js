@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
+import { v4 as uuidv4 } from 'uuid';
 
 import styles from '../styles/Book.module.css';
 import RemoveBook from './RemoveBook';
+import UpdateProgress from './UpdateProgress';
 
 function Book({
   id, category, title, author, className, percentage, chapter,
@@ -19,7 +21,7 @@ function Book({
             <span className={styles.Comments}>Comment</span>
             <div className={styles.Line2} />
             <span className={styles.Remove}>
-              <RemoveBook id={id} />
+              <RemoveBook key={uuidv4()} id={id} />
             </span>
             <div className={styles.Line2} />
             <span className={styles.Edit}>Edit</span>
@@ -46,7 +48,9 @@ function Book({
           <div className="Div2Div2">
             <span className={styles.CurrentChapter}>Current Chapter</span>
             <span className={styles.CurrentLesson}>{chapter}</span>
-            <span className={styles.UpdateProgress}>Update Progress</span>
+            <span className={styles.UpdateProgress}>
+              <UpdateProgress />
+            </span>
           </div>
         </div>
       </div>
