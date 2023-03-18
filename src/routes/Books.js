@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { fetchBooksFromAPI } from '../redux/features/books/booksSlice';
 import Book from '../components/Book';

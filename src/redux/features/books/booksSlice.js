@@ -6,7 +6,7 @@ const initialState = {
   isLoading: false,
 };
 
-const initialURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/dXhbHW84R2UylfqfKuq7/books';
+const initialURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/jlHjbkMlzkGLXOjWQa2c/books';
 
 export const fetchBooksFromAPI = createAsyncThunk(
   'books/fetchBooksFromAPI',
@@ -41,56 +41,52 @@ const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {},
-  extraReducers: {
-    [fetchBooksFromAPI.pending]: (state) => {
-      const storeState = state;
-      storeState.isLoading = true;
-    },
-    [fetchBooksFromAPI.fulfilled]: (state, action) => {
-      const storeState = state;
-      storeState.isLoading = false;
-      const data = action.payload;
-      const books = Object.entries(data).map(([itemId, item]) => {
-        const book = { itemId, ...item[0] };
-        return book;
-      });
-      storeState.booksItem = books;
-    },
-    [fetchBooksFromAPI.rejected]: (state) => {
-      const storeState = state;
-      storeState.isLoading = true;
-    },
-
-    [addBooksToAPI.pending]: (state) => {
-      const storeState = state;
-      storeState.isLoading = true;
-    },
-    [addBooksToAPI.fulfilled]: (state, action) => ({
-      ...state,
-      booksItem: [...state.booksItem, action.payload],
-      isLoading: false,
-    }),
-    [addBooksToAPI.rejected]: (state) => {
-      const storeState = state;
-      storeState.isLoading = true;
-    },
-
-    [removeBooksFromAPI.pending]: (state) => {
-      const storeState = state;
-      storeState.isLoading = true;
-    },
-    [removeBooksFromAPI.fulfilled]: (state, action) => {
-      const storeState = state;
-      storeState.isLoading = false;
-      const booksId = action.payload;
-      storeState.booksItem = storeState.booksItem.filter(
-        (book) => book.itemId !== booksId,
-      );
-    },
-    [removeBooksFromAPI.rejected]: (state) => {
-      const storeState = state;
-      storeState.isLoading = true;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBooksFromAPI.pending, (state) => ({
+        ...state,
+        isLoading: true,
+      }))
+      .addCase(fetchBooksFromAPI.fulfilled, (state, action) => ({
+        ...state,
+        booksItem: Object.entries(action.payload).map(([itemId, item]) => {
+          const book = { itemId, ...item[0] };
+          return book;
+        }),
+        isLoading: true,
+      }))
+      .addCase(fetchBooksFromAPI.rejected, (state) => ({
+        ...state,
+        isLoading: true,
+      }))
+      .addCase(addBooksToAPI.pending, (state) => ({
+        ...state,
+        isLoading: true,
+      }))
+      .addCase(addBooksToAPI.fulfilled, (state, action) => ({
+        ...state,
+        booksItem: [...state.booksItem, action.payload],
+        isLoading: false,
+      }))
+      .addCase(addBooksToAPI.rejected, (state) => ({
+        ...state,
+        isLoading: true,
+      }))
+      .addCase(removeBooksFromAPI.pending, (state) => ({
+        ...state,
+        isLoading: true,
+      }))
+      .addCase(removeBooksFromAPI.fulfilled, (state, action) => ({
+        ...state,
+        booksItem: state.booksItem.filter(
+          (book) => book.itemId !== action.payload,
+        ),
+        isLoading: false,
+      }))
+      .addCase(removeBooksFromAPI.rejected, (state) => ({
+        ...state,
+        isLoading: true,
+      }));
   },
 });
 
