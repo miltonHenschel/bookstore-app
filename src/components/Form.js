@@ -24,8 +24,6 @@ function Form() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const itemId = uuidv4();
-    // const newBook = { itemId, ...input };
-    // dispatch(addBooks(newBook));
     const newBook = {
       item_id: itemId,
       title: input.title,
