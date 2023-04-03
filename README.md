@@ -43,6 +43,8 @@
 
 **Bookstore App** is a website created with React and Redux which allows users to display a list of books, add a book, and remove a selected book.
 
+![bookstore-laptop](https://user-images.githubusercontent.com/87370519/229637321-54c24713-d42a-49f2-826c-384ede12b12b.png)
+
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
